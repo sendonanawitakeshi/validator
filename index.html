@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sendonanawitakeshi — Post Fiat Validator</title>
+  <meta name="description" content="Post Fiat testnet validator node operated by sendonanawitakeshi. Live health metrics, signal intelligence SDK, and semi-crypto correlation engine." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="bg-glow"></div>
+
+  <header>
+    <nav class="nav-container">
+      <div class="logo">
+        <span class="logo-hex">&#x2B21;</span>
+        <span class="logo-text">SENDONANAWITAKESHI</span>
+        <span class="logo-dot"></span>
+      </div>
+      <div class="nav-links">
+        <a href="https://github.com/sendonanawitakeshi" target="_blank" rel="noopener" class="nav-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+        <a href="https://explorer.testnet.postfiat.org/validators/nHBcLEB4S6moQGrhMjJo1jbp58WL5psHY9EMDWNAtdqykUYiA1rF" target="_blank" rel="noopener" class="nav-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          Explorer
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ── Hero ── -->
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-badge">
+          <span class="pulse-dot"></span>
+          <span id="heroStatus">CONNECTING</span>
+        </div>
+        <h1 class="hero-title">Post Fiat<br/>Validator Node</h1>
+        <p class="hero-sub">Testnet validator operated by <strong>sendonanawitakeshi</strong> — contributing to decentralized consensus, network security, and signal intelligence infrastructure since February 2026.</p>
+      </div>
+    </section>
+
+    <!-- ── Validator Health ── -->
+    <section class="section" id="health">
+      <div class="section-inner">
+        <div class="section-header">
+          <div class="section-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <h2 class="section-title">Validator Health</h2>
+          <div class="live-indicator" id="wsIndicator">
+            <span class="ws-dot" id="wsDot"></span>
+            <span class="ws-label" id="wsLabel">CONNECTING</span>
+            <span class="live-updated" id="lastUpdated"></span>
+          </div>
+        </div>
+
+        <!-- Agreement Scores -->
+        <div class="metrics-grid metrics-grid--3">
+          <div class="metric-card metric-card--primary">
+            <span class="metric-value" id="statScore1h">—</span>
+            <span class="metric-label">Agreement (1h)</span>
+            <span class="metric-sub" id="statMissed1h"></span>
+          </div>
+          <div class="metric-card metric-card--primary">
+            <span class="metric-value" id="statScore24h">—</span>
+            <span class="metric-label">Agreement (24h)</span>
+            <span class="metric-sub" id="statMissed24h"></span>
+          </div>
+          <div class="metric-card metric-card--primary">
+            <span class="metric-value" id="statScore30d">—</span>
+            <span class="metric-label">Agreement (30d)</span>
+            <span class="metric-sub" id="statMissed30d"></span>
+          </div>
+        </div>
+
+        <!-- Node Metrics -->
+        <div class="metrics-grid metrics-grid--4">
+          <div class="metric-card">
+            <span class="metric-value metric-value--sm" id="statVersion">—</span>
+            <span class="metric-label">Version</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-value metric-value--sm" id="statPeers">—</span>
+            <span class="metric-label">Peers</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-value metric-value--sm" id="statUptime">—</span>
+            <span class="metric-label">Uptime</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-value metric-value--sm" id="statSync">—</span>
+            <span class="metric-label">Sync Status</span>
+          </div>
+        </div>
+
+        <!-- Ledger Info -->
+        <div class="metrics-grid metrics-grid--3">
+          <div class="metric-card">
+            <span class="metric-value metric-value--sm" id="statLedger">—</span>
+            <span class="metric-label">Validated Ledger</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-value metric-value--sm" id="statLedgerAge">—</span>
+            <span class="metric-label">Ledger Age</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-value metric-value--sm" id="statNetwork">—</span>
+            <span class="metric-label">Network</span>
+          </div>
+        </div>
+
+        <!-- Validator Key -->
+        <div class="key-container">
+          <div class="key-row">
+            <span class="key-label">Validator Public Key</span>
+            <button class="copy-btn" onclick="copyKey(this, 'nHBcLEB4S6moQGrhMjJo1jbp58WL5psHY9EMDWNAtdqykUYiA1rF')">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+              <span>Copy</span>
+            </button>
+          </div>
+          <code class="key-value">nHBcLEB4S6moQGrhMjJo1jbp58WL5psHY9EMDWNAtdqykUYiA1rF</code>
+        </div>
+
+        <a href="https://explorer.testnet.postfiat.org/validators/nHBcLEB4S6moQGrhMjJo1jbp58WL5psHY9EMDWNAtdqykUYiA1rF" target="_blank" rel="noopener" class="cta-btn">
+          View on Explorer
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- ── Signal Infrastructure ── -->
+    <section class="section" id="signals">
+      <div class="section-inner">
+        <div class="section-header">
+          <div class="section-icon section-icon--blue">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 20h.01"/><path d="M7 20v-4"/><path d="M12 20v-8"/><path d="M17 20V8"/><path d="M22 4v16"/></svg>
+          </div>
+          <h2 class="section-title">Signal Intelligence Stack</h2>
+        </div>
+
+        <div class="signal-grid">
+          <div class="signal-card">
+            <div class="signal-card-header">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="signal-icon"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              <h3 class="signal-card-title">Post Fiat Signals SDK</h3>
+            </div>
+            <p class="signal-card-desc">Python SDK for consuming regime detection signals, filtered trade recommendations, and model health data from the semi-crypto correlation engine. Zero dependencies, retry logic built in, circuit breaker watchdog included.</p>
+            <div class="signal-card-stats">
+              <span class="signal-stat">Python 3.10+</span>
+              <span class="signal-stat">Zero Deps</span>
+              <span class="signal-stat">v0.3.0</span>
+            </div>
+            <a href="https://github.com/sendonanawitakeshi/post-fiat-signals" target="_blank" rel="noopener" class="cta-btn cta-btn--blue">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              View on GitHub
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+
+          <div class="signal-card">
+            <div class="signal-card-header">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="signal-icon signal-icon--stroke"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+              <h3 class="signal-card-title">Pipeline Capabilities</h3>
+            </div>
+            <ul class="signal-list">
+              <li><strong>Regime Detection</strong> — 60-day rolling window, 3 states (NEUTRAL / CRYPTO_LEADS / SYSTEMIC), 60% accuracy with 27-day lead time</li>
+              <li><strong>Filtered Signals</strong> — Regime-gated trade recommendations. NEUTRAL/CRYPTO_LEADS combo: 82% hit rate, +8.24% avg return</li>
+              <li><strong>Granger Causality</strong> — Hourly semi-to-crypto lead-lag monitor across 9 pairs. NVDA-to-RNDR strongest signal (Bonferroni significant)</li>
+              <li><strong>Model Drift Watchdog</strong> — Hourly F-stat monitoring with 3 detectors, circuit breaker (VALID / DEGRADED / STOP)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Operator Profile ── -->
+    <section class="section" id="operator">
+      <div class="section-inner">
+        <div class="section-header">
+          <div class="section-icon section-icon--amber">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <h2 class="section-title">Operator</h2>
+        </div>
+
+        <div class="operator-card">
+          <div class="operator-identity">
+            <div class="operator-avatar">
+              <span>S</span>
+            </div>
+            <div class="operator-info">
+              <h3 class="operator-name">sendonanawitakeshi</h3>
+              <p class="operator-role">Post Fiat Network Contributor</p>
+            </div>
+          </div>
+          <p class="operator-desc">Anonymous contributor focused on signal intelligence infrastructure for the Post Fiat network. Built and maintains a semi-crypto correlation engine that detects regime shifts between semiconductor equities and crypto assets, providing filtered trade signals to other network participants via a public Python SDK and JSON API.</p>
+          <div class="operator-contributions">
+            <div class="contribution">
+              <span class="contribution-num">37+</span>
+              <span class="contribution-label">Tasks Completed</span>
+            </div>
+            <div class="contribution">
+              <span class="contribution-num">6</span>
+              <span class="contribution-label">API Endpoints</span>
+            </div>
+            <div class="contribution">
+              <span class="contribution-num">36</span>
+              <span class="contribution-label">Integration Tests</span>
+            </div>
+            <div class="contribution">
+              <span class="contribution-num">18</span>
+              <span class="contribution-label">Stress Tests</span>
+            </div>
+          </div>
+          <div class="operator-links">
+            <a href="https://github.com/sendonanawitakeshi/post-fiat-signals" target="_blank" rel="noopener" class="operator-link">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              SDK Repo
+            </a>
+            <a href="https://explorer.testnet.postfiat.org/validators/nHBcLEB4S6moQGrhMjJo1jbp58WL5psHY9EMDWNAtdqykUYiA1rF" target="_blank" rel="noopener" class="operator-link">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+              Validator Explorer
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-divider"></div>
+      <div class="footer-pf">
+        <a href="https://postfiat.org" target="_blank" rel="noopener" class="pf-brand">
+          <span class="pf-hex">&#x2B21;</span>
+          <span class="pf-text">Powered by <strong>Post Fiat</strong></span>
+        </a>
+        <nav class="pf-links" aria-label="Post Fiat resources">
+          <a href="https://postfiat.org/whitepaper/" target="_blank" rel="noopener" class="pf-link">Whitepaper</a>
+          <a href="https://docs.postfiat.org/Discord-Wallet-Guide-170573318648807a8cd0d4f5022d1a08" target="_blank" rel="noopener" class="pf-link">Docs</a>
+          <a href="https://github.com/postfiatorg" target="_blank" rel="noopener" class="pf-link">GitHub</a>
+          <a href="https://discord.gg/3wJsg3T5Au" target="_blank" rel="noopener" class="pf-link">Discord</a>
+          <a href="https://x.com/PostFiatOrg" target="_blank" rel="noopener" class="pf-link">X</a>
+        </nav>
+      </div>
+      <p class="footer-copy">&copy; 2026 sendonanawitakeshi &middot; Post Fiat Testnet Validator</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
