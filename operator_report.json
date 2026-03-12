@@ -1,0 +1,31 @@
+{
+  "generated_at": "2026-03-12T00:02:27Z",
+  "period_start": "2026-03-12T00:01:35Z",
+  "period_end": "2026-03-12T00:01:35Z",
+  "samples": 1,
+  "version": "3.0.0",
+  "ledger_lag": {
+    "p50": 2,
+    "p95": 2,
+    "p99": 2,
+    "max": 2
+  },
+  "peers": {
+    "median": 21,
+    "min": 21,
+    "max": 21
+  },
+  "restart_count": 0,
+  "missed_validations_30d": 1780,
+  "total_validations_30d": 748286,
+  "uptime_pct": 100.0,
+  "server_states": {
+    "full": 1,
+    "syncing": 0,
+    "connected": 0,
+    "disconnected": 0,
+    "tracking": 0
+  },
+  "alerts": [],
+  "alert_count": 0
+}
