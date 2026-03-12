@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-03-12T00:25:26Z",
+  "generated_at": "2026-03-12T00:29:55Z",
   "period_start": "2026-03-12T00:17:17Z",
-  "period_end": "2026-03-12T00:25:01Z",
-  "period_hours": 0.1,
-  "samples": 9,
+  "period_end": "2026-03-12T00:29:01Z",
+  "period_hours": 0.2,
+  "samples": 13,
   "version": "3.0.0",
   "image_pinned": true,
   "image_digest": "sha256:8ae343faf4859798a870c65e90e86b4f9f5414b442463b8a23d951c86de9dcb6",
@@ -37,6 +37,11 @@
       "pass": true,
       "value": 0,
       "rule": "no disconnect burst (>20) correlated with ledger_age > 4s"
+    },
+    "zero_collection_gaps": {
+      "pass": true,
+      "value": 0,
+      "rule": "zero missed report generations (no gaps > 3min in 60s samples)"
     }
   },
   "all_benchmarks_pass": true,
@@ -60,7 +65,15 @@
   "missed_validations_30d": 1780,
   "total_validations_30d": 748286,
   "server_states": {
-    "full": 9
+    "full": 13
+  },
+  "collection_gaps": [],
+  "collection_rate_pct": 108.3,
+  "expected_samples": 12,
+  "raw_csv_attestation": {
+    "sha256": "48c3be9bed869608a83e2433a150bf5218127437229c55aa4ba9b606efd42ae7",
+    "size_bytes": 1408,
+    "path": "/opt/postfiatd/metrics/validator_metrics.csv"
   },
   "alerts": [],
   "alert_count": 0
