@@ -152,7 +152,8 @@ function renderReport(rpt) {
     var html = '';
     var order = [
       'zero_full_exits', 'zero_restarts', 'p95_lag_le_4',
-      'median_peers_gt_15', 'p5_peers_gt_10', 'no_disconnect_burst_lag'
+      'median_peers_gt_15', 'p5_peers_gt_10', 'no_disconnect_burst_lag',
+      'zero_collection_gaps'
     ];
     var valueFormat = {
       'zero_full_exits': function(b) { return b.value + ' exits'; },
@@ -170,6 +171,10 @@ function renderReport(rpt) {
       },
       'no_disconnect_burst_lag': function(b) {
         return b.value + ' burst events';
+      },
+      'zero_collection_gaps': function(b) {
+        var rate = rpt.collection_rate_pct || 100;
+        return b.value + ' gaps (' + rate + '% collection rate)';
       },
     };
 
@@ -190,13 +195,22 @@ function renderReport(rpt) {
     table.innerHTML = html;
   }
 
-  // Image pin
+  // Image pin + CSV attestation
   var pin = $('imagePin');
   if (pin && rpt.image_pinned) {
-    pin.innerHTML = '<div class="image-pin-row">' +
+    var att = rpt.raw_csv_attestation || {};
+    var html = '<div class="image-pin-row">' +
       '<span class="image-pin-label">PINNED</span> ' +
       'v' + escapeHtml(rpt.version || '?') + ' @ ' + escapeHtml(rpt.image_digest || '?') +
       '</div>';
+    if (att.sha256) {
+      html += '<div class="image-pin-row" style="margin-top:4px">' +
+        '<span class="image-pin-label" style="color:#8b5cf6">CSV</span> ' +
+        'sha256:' + escapeHtml(att.sha256.slice(0, 16)) + '... (' +
+        fmtNum(att.size_bytes) + ' bytes, ' + fmtNum(rpt.samples || 0) + ' samples)' +
+        '</div>';
+    }
+    pin.innerHTML = html;
   }
 
   // Alert log
