@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-03-12T00:17:23Z",
+  "generated_at": "2026-03-12T00:25:26Z",
   "period_start": "2026-03-12T00:17:17Z",
-  "period_end": "2026-03-12T00:17:17Z",
-  "period_hours": 0.0,
-  "samples": 1,
+  "period_end": "2026-03-12T00:25:01Z",
+  "period_hours": 0.1,
+  "samples": 9,
   "version": "3.0.0",
   "image_pinned": true,
   "image_digest": "sha256:8ae343faf4859798a870c65e90e86b4f9f5414b442463b8a23d951c86de9dcb6",
@@ -20,17 +20,17 @@
     },
     "p95_lag_le_4": {
       "pass": true,
-      "value": 3,
+      "value": 3.0,
       "rule": "p95 validated_ledger.age <= 4s"
     },
     "median_peers_gt_15": {
       "pass": true,
-      "value": 21,
+      "value": 21.0,
       "rule": "median peers > 15"
     },
     "p5_peers_gt_10": {
       "pass": true,
-      "value": 21,
+      "value": 21.0,
       "rule": "5th percentile peers > 10"
     },
     "no_disconnect_burst_lag": {
@@ -41,14 +41,14 @@
   },
   "all_benchmarks_pass": true,
   "ledger_lag": {
-    "p50": 3,
-    "p95": 3,
-    "p99": 3,
+    "p50": 1.0,
+    "p95": 3.0,
+    "p99": 3.0,
     "max": 3
   },
   "peers": {
-    "median": 21,
-    "p5": 21,
+    "median": 21.0,
+    "p5": 21.0,
     "min": 21,
     "max": 21
   },
@@ -60,7 +60,7 @@
   "missed_validations_30d": 1780,
   "total_validations_30d": 748286,
   "server_states": {
-    "full": 1
+    "full": 9
   },
   "alerts": [],
   "alert_count": 0
