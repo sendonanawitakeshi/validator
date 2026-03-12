@@ -136,7 +136,7 @@
       </div>
     </section>
 
-    <!-- ── Operator Report ── -->
+    <!-- ── 7-Day Operator Report ── -->
     <section class="section" id="report">
       <div class="section-inner">
         <div class="section-header">
@@ -148,55 +148,21 @@
         </div>
 
         <div class="report-notice" id="reportNotice" style="display:none;">
-          <span>Collecting data — report populates as samples accumulate over the next 7 days.</span>
+          <span>Collecting 60s-interval samples. Report fills in over 7 days.</span>
         </div>
 
-        <!-- Performance Metrics -->
-        <div class="metrics-grid metrics-grid--4">
-          <div class="metric-card metric-card--report">
-            <span class="metric-value metric-value--sm" id="rptP95Lag">—</span>
-            <span class="metric-label">p95 Ledger Lag</span>
-            <span class="metric-sub" id="rptLagDetail"></span>
-          </div>
-          <div class="metric-card metric-card--report">
-            <span class="metric-value metric-value--sm" id="rptMedianPeers">—</span>
-            <span class="metric-label">Median Peers</span>
-            <span class="metric-sub" id="rptPeerDetail"></span>
-          </div>
-          <div class="metric-card metric-card--report">
-            <span class="metric-value metric-value--sm" id="rptRestarts">—</span>
-            <span class="metric-label">Restarts</span>
-            <span class="metric-sub" id="rptRestartDetail"></span>
-          </div>
-          <div class="metric-card metric-card--report">
-            <span class="metric-value metric-value--sm" id="rptUptime">—</span>
-            <span class="metric-label">Uptime</span>
-            <span class="metric-sub" id="rptUptimeDetail"></span>
-          </div>
-        </div>
+        <!-- Benchmark verdict -->
+        <div class="benchmark-verdict" id="benchmarkVerdict"></div>
 
-        <!-- Missed Validations + Alerts -->
-        <div class="metrics-grid metrics-grid--3">
-          <div class="metric-card metric-card--report">
-            <span class="metric-value metric-value--sm" id="rptMissed">—</span>
-            <span class="metric-label">Missed (30d)</span>
-            <span class="metric-sub" id="rptMissedDetail"></span>
-          </div>
-          <div class="metric-card metric-card--report">
-            <span class="metric-value metric-value--sm" id="rptVersion">—</span>
-            <span class="metric-label">Pinned Version</span>
-            <span class="metric-sub">image digest locked</span>
-          </div>
-          <div class="metric-card metric-card--report">
-            <span class="metric-value metric-value--sm" id="rptAlerts">—</span>
-            <span class="metric-label">Alerts (7d)</span>
-            <span class="metric-sub" id="rptAlertDetail"></span>
-          </div>
-        </div>
+        <!-- Benchmark table -->
+        <div class="benchmark-table" id="benchmarkTable"></div>
 
-        <!-- Alert Log -->
+        <!-- Image pin -->
+        <div class="image-pin" id="imagePin"></div>
+
+        <!-- Alert log -->
         <div class="report-alerts" id="reportAlerts" style="display:none;">
-          <div class="report-alerts-header">Recent Alerts</div>
+          <div class="report-alerts-header">Alert Log (7d)</div>
           <div class="report-alerts-list" id="reportAlertsList"></div>
         </div>
 
