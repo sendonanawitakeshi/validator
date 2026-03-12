@@ -136,6 +136,74 @@
       </div>
     </section>
 
+    <!-- ── Operator Report ── -->
+    <section class="section" id="report">
+      <div class="section-inner">
+        <div class="section-header">
+          <div class="section-icon section-icon--report">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </div>
+          <h2 class="section-title">7-Day Operator Report</h2>
+          <div class="report-meta" id="reportMeta"></div>
+        </div>
+
+        <div class="report-notice" id="reportNotice" style="display:none;">
+          <span>Collecting data — report populates as samples accumulate over the next 7 days.</span>
+        </div>
+
+        <!-- Performance Metrics -->
+        <div class="metrics-grid metrics-grid--4">
+          <div class="metric-card metric-card--report">
+            <span class="metric-value metric-value--sm" id="rptP95Lag">—</span>
+            <span class="metric-label">p95 Ledger Lag</span>
+            <span class="metric-sub" id="rptLagDetail"></span>
+          </div>
+          <div class="metric-card metric-card--report">
+            <span class="metric-value metric-value--sm" id="rptMedianPeers">—</span>
+            <span class="metric-label">Median Peers</span>
+            <span class="metric-sub" id="rptPeerDetail"></span>
+          </div>
+          <div class="metric-card metric-card--report">
+            <span class="metric-value metric-value--sm" id="rptRestarts">—</span>
+            <span class="metric-label">Restarts</span>
+            <span class="metric-sub" id="rptRestartDetail"></span>
+          </div>
+          <div class="metric-card metric-card--report">
+            <span class="metric-value metric-value--sm" id="rptUptime">—</span>
+            <span class="metric-label">Uptime</span>
+            <span class="metric-sub" id="rptUptimeDetail"></span>
+          </div>
+        </div>
+
+        <!-- Missed Validations + Alerts -->
+        <div class="metrics-grid metrics-grid--3">
+          <div class="metric-card metric-card--report">
+            <span class="metric-value metric-value--sm" id="rptMissed">—</span>
+            <span class="metric-label">Missed (30d)</span>
+            <span class="metric-sub" id="rptMissedDetail"></span>
+          </div>
+          <div class="metric-card metric-card--report">
+            <span class="metric-value metric-value--sm" id="rptVersion">—</span>
+            <span class="metric-label">Pinned Version</span>
+            <span class="metric-sub">image digest locked</span>
+          </div>
+          <div class="metric-card metric-card--report">
+            <span class="metric-value metric-value--sm" id="rptAlerts">—</span>
+            <span class="metric-label">Alerts (7d)</span>
+            <span class="metric-sub" id="rptAlertDetail"></span>
+          </div>
+        </div>
+
+        <!-- Alert Log -->
+        <div class="report-alerts" id="reportAlerts" style="display:none;">
+          <div class="report-alerts-header">Recent Alerts</div>
+          <div class="report-alerts-list" id="reportAlertsList"></div>
+        </div>
+
+        <div class="report-footer" id="reportFooter"></div>
+      </div>
+    </section>
+
     <!-- ── Signal Infrastructure ── -->
     <section class="section" id="signals">
       <div class="section-inner">

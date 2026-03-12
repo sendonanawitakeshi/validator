@@ -1,6 +1,7 @@
 // ── Config ────────────────────────────────────────────────────────────────────
 const VALIDATOR_KEY = 'nHBcLEB4S6moQGrhMjJo1jbp58WL5psHY9EMDWNAtdqykUYiA1rF';
 const VHS_URL       = 'https://vhs.testnet.postfiat.org/v1/network/validator/' + VALIDATOR_KEY;
+const REPORT_URL    = 'operator_report.json';
 const RPC_URL       = null; // local RPC not exposed publicly; VHS only
 const REFRESH_MS    = 60 * 1000;
 const NODE_CREATED  = new Date('2026-02-14T11:32:48Z');
@@ -100,6 +101,172 @@ function render(data) {
   }, 15000);
 }
 
+// ── Operator Report ──────────────────────────────────────────────────────────
+async function fetchReport() {
+  try {
+    var res = await fetch(REPORT_URL + '?t=' + Date.now());
+    if (!res.ok) return;
+    var rpt = await res.json();
+    renderReport(rpt);
+  } catch (e) {
+    // Report not available yet — show notice
+    var notice = $('reportNotice');
+    if (notice) notice.style.display = 'block';
+  }
+}
+
+function renderReport(rpt) {
+  var notice = $('reportNotice');
+
+  // Show notice if very few samples (< 60 = less than 1 hour of data)
+  if (rpt.samples < 60) {
+    if (notice) {
+      notice.style.display = 'block';
+      notice.querySelector('span').textContent =
+        'Collecting data — ' + rpt.samples + ' samples so far. Report fills in over 7 days.';
+    }
+  } else {
+    if (notice) notice.style.display = 'none';
+  }
+
+  // Meta
+  var meta = $('reportMeta');
+  if (meta && rpt.generated_at) {
+    var ago = timeSince(new Date(rpt.generated_at));
+    meta.textContent = rpt.samples + ' samples | updated ' + ago;
+  }
+
+  // p95 Ledger Lag
+  var lag = rpt.ledger_lag || {};
+  var p95El = $('rptP95Lag');
+  if (p95El) {
+    p95El.textContent = lag.p95 != null ? lag.p95 + 's' : '—';
+    p95El.className = 'metric-value metric-value--sm' + lagClass(lag.p95);
+  }
+  var lagDetail = $('rptLagDetail');
+  if (lagDetail) {
+    lagDetail.textContent = 'p50=' + (lag.p50 || 0) + 's / p99=' + (lag.p99 || 0) + 's / max=' + (lag.max || 0) + 's';
+  }
+
+  // Median Peers
+  var peers = rpt.peers || {};
+  var peersEl = $('rptMedianPeers');
+  if (peersEl) {
+    peersEl.textContent = peers.median != null ? peers.median : '—';
+    peersEl.className = 'metric-value metric-value--sm' + (peers.median >= 10 ? ' metric-value--green' : peers.median >= 5 ? ' metric-value--amber' : ' metric-value--red');
+  }
+  var peerDetail = $('rptPeerDetail');
+  if (peerDetail) {
+    peerDetail.textContent = 'min=' + (peers.min || 0) + ' / max=' + (peers.max || 0);
+  }
+
+  // Restarts
+  var restartsEl = $('rptRestarts');
+  if (restartsEl) {
+    restartsEl.textContent = rpt.restart_count != null ? rpt.restart_count : '—';
+    restartsEl.className = 'metric-value metric-value--sm' + (rpt.restart_count === 0 ? ' metric-value--green' : ' metric-value--amber');
+  }
+  var restartDetail = $('rptRestartDetail');
+  if (restartDetail) {
+    restartDetail.textContent = rpt.restart_count === 0 ? 'no restarts in period' : rpt.restart_count + ' restart(s) detected';
+  }
+
+  // Uptime
+  var uptimeEl = $('rptUptime');
+  if (uptimeEl) {
+    uptimeEl.textContent = rpt.uptime_pct != null ? rpt.uptime_pct + '%' : '—';
+    uptimeEl.className = 'metric-value metric-value--sm' + (rpt.uptime_pct >= 99.9 ? ' metric-value--green' : rpt.uptime_pct >= 99 ? ' metric-value--amber' : ' metric-value--red');
+  }
+  var uptimeDetail = $('rptUptimeDetail');
+  if (uptimeDetail) {
+    uptimeDetail.textContent = 'server_state=full';
+  }
+
+  // Missed validations
+  var missedEl = $('rptMissed');
+  if (missedEl && rpt.total_validations_30d) {
+    var missedPct = ((rpt.missed_validations_30d / rpt.total_validations_30d) * 100).toFixed(3);
+    missedEl.textContent = fmtNum(rpt.missed_validations_30d);
+    missedEl.className = 'metric-value metric-value--sm' + (missedPct < 1 ? ' metric-value--green' : ' metric-value--amber');
+  }
+  var missedDetail = $('rptMissedDetail');
+  if (missedDetail && rpt.total_validations_30d) {
+    missedDetail.textContent = fmtNum(rpt.missed_validations_30d) + ' / ' + fmtNum(rpt.total_validations_30d) + ' total';
+  }
+
+  // Version
+  var versionEl = $('rptVersion');
+  if (versionEl) {
+    versionEl.textContent = rpt.version ? 'v' + rpt.version : '—';
+    versionEl.className = 'metric-value metric-value--sm metric-value--green';
+  }
+
+  // Alerts
+  var alertsEl = $('rptAlerts');
+  if (alertsEl) {
+    alertsEl.textContent = rpt.alert_count != null ? rpt.alert_count : '—';
+    alertsEl.className = 'metric-value metric-value--sm' + (rpt.alert_count === 0 ? ' metric-value--green' : ' metric-value--amber');
+  }
+  var alertDetail = $('rptAlertDetail');
+  if (alertDetail) {
+    alertDetail.textContent = rpt.alert_count === 0 ? 'clean — no alerts' : rpt.alert_count + ' alert(s) in period';
+  }
+
+  // Alert log
+  var alertsContainer = $('reportAlerts');
+  var alertsList = $('reportAlertsList');
+  if (alertsContainer && alertsList && rpt.alerts && rpt.alerts.length > 0) {
+    alertsContainer.style.display = 'block';
+    alertsList.innerHTML = '';
+    rpt.alerts.forEach(function(a) {
+      var row = document.createElement('div');
+      row.className = 'report-alert-row';
+      var ts = a.timestamp ? a.timestamp.replace('T', ' ').replace('Z', '') : '';
+      row.innerHTML =
+        '<span class="report-alert-ts">' + ts + '</span>' +
+        '<span class="report-alert-sev report-alert-sev--' + (a.severity || 'WARNING') + '">' + (a.severity || '?') + '</span>' +
+        '<span class="report-alert-msg">' + escapeHtml(a.message || '') + '</span>';
+      alertsList.appendChild(row);
+    });
+  }
+
+  // Footer
+  var footer = $('reportFooter');
+  if (footer) {
+    footer.textContent = 'Report generated ' + (rpt.generated_at || '—') +
+      ' | Period: ' + fmtDate(rpt.period_start) + ' to ' + fmtDate(rpt.period_end) +
+      ' | Sourced from server_info, peers, VHS, container logs';
+  }
+}
+
+function lagClass(val) {
+  if (val == null) return '';
+  if (val <= 2) return ' metric-value--green';
+  if (val <= 5) return ' metric-value--amber';
+  return ' metric-value--red';
+}
+
+function timeSince(date) {
+  var s = Math.floor((Date.now() - date.getTime()) / 1000);
+  if (s < 60) return 'just now';
+  var m = Math.floor(s / 60);
+  if (m < 60) return m + 'm ago';
+  var h = Math.floor(m / 60);
+  if (h < 24) return h + 'h ago';
+  return Math.floor(h / 24) + 'd ago';
+}
+
+function fmtDate(iso) {
+  if (!iso) return '—';
+  return iso.replace('T', ' ').replace('Z', '').slice(0, 16);
+}
+
+function escapeHtml(s) {
+  var d = document.createElement('div');
+  d.appendChild(document.createTextNode(s));
+  return d.innerHTML;
+}
+
 // ── Status ────────────────────────────────────────────────────────────────────
 function setStatus(state) {
   el.wsDot.className  = 'ws-dot';
@@ -165,4 +332,6 @@ document.addEventListener('mousemove', function(e) {
 
 // ── Boot ──────────────────────────────────────────────────────────────────────
 fetchStats();
+fetchReport();
 setInterval(fetchStats, REFRESH_MS);
+setInterval(fetchReport, 5 * 60 * 1000); // refresh report every 5 min

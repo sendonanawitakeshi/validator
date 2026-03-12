@@ -379,6 +379,94 @@ header {
   color: #fff;
 }
 
+/* ── Operator Report Section ─────────────── */
+
+.section-icon--report {
+  background: rgba(139,92,246,0.08);
+  border-color: rgba(139,92,246,0.2);
+  color: #8b5cf6;
+}
+
+.metric-card--report {
+  background: rgba(139,92,246,0.02);
+  border-color: rgba(139,92,246,0.1);
+}
+
+.report-meta {
+  font-size: 0.6rem; color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+  margin-left: auto;
+}
+
+.report-notice {
+  background: rgba(139,92,246,0.05);
+  border: 1px solid rgba(139,92,246,0.15);
+  border-radius: 8px; padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.8rem; color: var(--text-secondary);
+}
+
+.report-alerts {
+  margin-top: 0.5rem;
+  background: rgba(0,0,0,0.3);
+  border: 1px solid var(--border);
+  border-radius: 8px; overflow: hidden;
+}
+
+.report-alerts-header {
+  font-family: var(--font-display);
+  font-size: 0.6rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.report-alerts-list {
+  max-height: 200px; overflow-y: auto;
+}
+
+.report-alert-row {
+  display: flex; align-items: center; gap: 8px;
+  padding: 0.4rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem; color: var(--text-secondary);
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+
+.report-alert-row:last-child { border-bottom: none; }
+
+.report-alert-ts { color: var(--text-muted); flex-shrink: 0; }
+
+.report-alert-sev {
+  padding: 1px 6px; border-radius: 3px;
+  font-size: 0.55rem; font-weight: 600;
+  letter-spacing: 0.05em; flex-shrink: 0;
+}
+
+.report-alert-sev--WARNING {
+  background: rgba(245,158,11,0.15);
+  color: var(--accent-amber);
+}
+
+.report-alert-sev--CRITICAL {
+  background: rgba(239,68,68,0.15);
+  color: #ef4444;
+}
+
+.report-alert-sev--RESOLVED {
+  background: rgba(0,229,160,0.1);
+  color: var(--accent-green);
+}
+
+.report-alert-msg { flex: 1; }
+
+.report-footer {
+  margin-top: 0.75rem;
+  font-size: 0.6rem; color: var(--text-muted);
+  text-align: center;
+}
+
 /* ── Signal Section ───────────────────────── */
 
 .signal-grid {
