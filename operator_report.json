@@ -1,80 +1,80 @@
 {
-  "generated_at": "2026-03-12T00:30:41Z",
-  "period_start": "2026-03-12T00:17:17Z",
-  "period_end": "2026-03-12T00:30:01Z",
-  "period_hours": 0.2,
-  "samples": 14,
-  "version": "3.0.0",
-  "image_pinned": true,
-  "image_digest": "sha256:8ae343faf4859798a870c65e90e86b4f9f5414b442463b8a23d951c86de9dcb6",
-  "benchmarks": {
-    "zero_full_exits": {
-      "pass": true,
-      "value": 0,
-      "rule": "zero exits from server_state=full"
+    "alert_count": 0,
+    "alerts": [],
+    "all_benchmarks_pass": true,
+    "benchmarks": {
+        "median_peers_gt_15": {
+            "pass": true,
+            "rule": "median peers > 15",
+            "value": 21
+        },
+        "no_disconnect_burst_lag": {
+            "pass": true,
+            "rule": "no disconnect burst (>20) correlated with ledger_age > 4s",
+            "value": 0
+        },
+        "p5_peers_gt_10": {
+            "pass": true,
+            "rule": "5th percentile peers > 10",
+            "value": 21
+        },
+        "p95_lag_le_4": {
+            "pass": true,
+            "rule": "p95 validated_ledger.age <= 4s",
+            "value": 3
+        },
+        "zero_collection_gaps": {
+            "pass": true,
+            "rule": "zero missed report generations (no gaps > 3min in 60s samples)",
+            "value": 0
+        },
+        "zero_full_exits": {
+            "pass": true,
+            "rule": "zero exits from server_state=full",
+            "value": 0
+        },
+        "zero_restarts": {
+            "pass": true,
+            "rule": "zero unexpected restarts in 7d",
+            "value": 0
+        }
     },
-    "zero_restarts": {
-      "pass": true,
-      "value": 0,
-      "rule": "zero unexpected restarts in 7d"
+    "collection_gaps": [],
+    "collection_rate_pct": 116.7,
+    "disconnect_burst_events": [],
+    "expected_samples": 12,
+    "full_exits": 0,
+    "full_state_pct": 100,
+    "generated_at": "2026-03-12T00:30:41Z",
+    "image_digest": "sha256:8ae343faf4859798a870c65e90e86b4f9f5414b442463b8a23d951c86de9dcb6",
+    "image_pinned": true,
+    "ledger_lag": {
+        "max": 3,
+        "p50": 1.5,
+        "p95": 3,
+        "p99": 3
     },
-    "p95_lag_le_4": {
-      "pass": true,
-      "value": 3.0,
-      "rule": "p95 validated_ledger.age <= 4s"
+    "missed_validations_30d": 1780,
+    "non_full_samples": [],
+    "peers": {
+        "max": 21,
+        "median": 21,
+        "min": 21,
+        "p5": 21
     },
-    "median_peers_gt_15": {
-      "pass": true,
-      "value": 21.0,
-      "rule": "median peers > 15"
+    "period_end": "2026-03-12T00:30:01Z",
+    "period_hours": 0.2,
+    "period_start": "2026-03-12T00:17:17Z",
+    "raw_csv_attestation": {
+        "path": "/opt/postfiatd/metrics/validator_metrics.csv",
+        "sha256": "456259f8b65e63c65f8e7af0f4a45b561cde88c9b944e552c2871505d46e648e",
+        "size_bytes": 1500
     },
-    "p5_peers_gt_10": {
-      "pass": true,
-      "value": 21.0,
-      "rule": "5th percentile peers > 10"
+    "restart_count": 0,
+    "samples": 14,
+    "server_states": {
+        "full": 14
     },
-    "no_disconnect_burst_lag": {
-      "pass": true,
-      "value": 0,
-      "rule": "no disconnect burst (>20) correlated with ledger_age > 4s"
-    },
-    "zero_collection_gaps": {
-      "pass": true,
-      "value": 0,
-      "rule": "zero missed report generations (no gaps > 3min in 60s samples)"
-    }
-  },
-  "all_benchmarks_pass": true,
-  "ledger_lag": {
-    "p50": 1.5,
-    "p95": 3.0,
-    "p99": 3.0,
-    "max": 3
-  },
-  "peers": {
-    "median": 21.0,
-    "p5": 21.0,
-    "min": 21,
-    "max": 21
-  },
-  "full_state_pct": 100.0,
-  "full_exits": 0,
-  "non_full_samples": [],
-  "restart_count": 0,
-  "disconnect_burst_events": [],
-  "missed_validations_30d": 1780,
-  "total_validations_30d": 748286,
-  "server_states": {
-    "full": 14
-  },
-  "collection_gaps": [],
-  "collection_rate_pct": 116.7,
-  "expected_samples": 12,
-  "raw_csv_attestation": {
-    "sha256": "456259f8b65e63c65f8e7af0f4a45b561cde88c9b944e552c2871505d46e648e",
-    "size_bytes": 1500,
-    "path": "/opt/postfiatd/metrics/validator_metrics.csv"
-  },
-  "alerts": [],
-  "alert_count": 0
+    "total_validations_30d": 748286,
+    "version": "3.0.0"
 }
