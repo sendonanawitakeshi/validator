@@ -722,7 +722,7 @@ const API_BASE = (function() {
   const params = new URLSearchParams(window.location.search);
   if (params.get('api')) return params.get('api').replace(/\/$/, '');
   if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') return 'http://localhost:8080';
-  return 'http://84.32.34.46:8080';
+  return '';
 })();
 const POLL_INTERVAL_MS = 60000;
 const FETCH_TIMEOUT_MS = 12000;
@@ -1400,6 +1400,18 @@ async function fetchAll() {
 // ── Initial load + polling ────────────────────────────────────────────────
 
 (async function init() {
+  // Require explicit API endpoint when not on localhost
+  if (!API_BASE) {
+    document.querySelector('.dashboard-grid').innerHTML =
+      '<div style="grid-column:1/-1;text-align:center;padding:3rem 1rem;">' +
+      '<h2 style="color:#e6edf3;margin-bottom:1rem;">API Endpoint Required</h2>' +
+      '<p style="color:#8b949e;margin-bottom:1.5rem;">Add <code style="color:#58a6ff;">?api=http://your-server:8080</code> to the URL to connect this dashboard to your signal API.</p>' +
+      '<p style="color:#8b949e;font-size:0.85rem;">Example: <code style="color:#58a6ff;">audit.html?api=http://localhost:8080</code></p>' +
+      '</div>';
+    setConnected(false);
+    return;
+  }
+
   // Initial fetch
   await fetchAll();
 
