@@ -1,7 +1,128 @@
 {
-    "alert_count": 0,
-    "alerts": [],
-    "all_benchmarks_pass": true,
+    "alert_count": 176,
+    "alerts": [
+        {
+            "category": "LOW_PEERS",
+            "message": "peers=6 (floor: 10)",
+            "severity": "WARNING",
+            "timestamp": "2026-03-19T03:54:01Z"
+        },
+        {
+            "category": "LOW_PEERS",
+            "message": "peers=9 (floor: 10)",
+            "severity": "WARNING",
+            "timestamp": "2026-03-19T03:55:02Z"
+        },
+        {
+            "category": "LOW_PEERS",
+            "message": "peers=9 (floor: 10)",
+            "severity": "WARNING",
+            "timestamp": "2026-03-19T04:04:01Z"
+        },
+        {
+            "category": "LOW_PEERS",
+            "message": "peers=6 (floor: 10)",
+            "severity": "WARNING",
+            "timestamp": "2026-03-19T04:05:01Z"
+        },
+        {
+            "category": "LOW_PEERS",
+            "message": "peers=8 (floor: 10)",
+            "severity": "WARNING",
+            "timestamp": "2026-03-19T04:06:01Z"
+        },
+        {
+            "category": "LOW_PEERS",
+            "message": "peers=7 (floor: 10)",
+            "severity": "WARNING",
+            "timestamp": "2026-03-19T04:16:02Z"
+        },
+        {
+            "category": "LOW_PEERS",
+            "message": "peers=6 (floor: 10)",
+            "severity": "WARNING",
+            "timestamp": "2026-03-19T04:17:01Z"
+        },
+        {
+            "category": "LOW_PEERS",
+            "message": "peers=9 (floor: 10)",
+            "severity": "WARNING",
+            "timestamp": "2026-03-19T04:27:01Z"
+        },
+        {
+            "category": "LOW_PEERS",
+            "message": "peers=6 (floor: 10)",
+            "severity": "WARNING",
+            "timestamp": "2026-03-19T04:28:01Z"
+        },
+        {
+            "category": "LOW_PEERS",
+            "message": "peers=9 (floor: 10)",
+            "severity": "WARNING",
+            "timestamp": "2026-03-19T04:38:02Z"
+        },
+        {
+            "category": "LOW_PEERS",
+            "message": "peers=6 (floor: 10)",
+            "severity": "WARNING",
+            "timestamp": "2026-03-19T04:39:01Z"
+        },
+        {
+            "category": "LOW_PEERS",
+            "message": "peers=9 (floor: 10)",
+            "severity": "WARNING",
+            "timestamp": "2026-03-19T04:40:01Z"
+        },
+        {
+            "category": "LOW_PEERS",
+            "message": "peers=9 (floor: 10)",
+            "severity": "WARNING",
+            "timestamp": "2026-03-19T04:49:01Z"
+        },
+        {
+            "category": "LOW_PEERS",
+            "message": "peers=6 (floor: 10)",
+            "severity": "WARNING",
+            "timestamp": "2026-03-19T04:50:01Z"
+        },
+        {
+            "category": "LOW_PEERS",
+            "message": "peers=7 (floor: 10)",
+            "severity": "WARNING",
+            "timestamp": "2026-03-19T04:51:02Z"
+        },
+        {
+            "category": "LOW_PEERS",
+            "message": "peers=8 (floor: 10)",
+            "severity": "WARNING",
+            "timestamp": "2026-03-19T05:01:02Z"
+        },
+        {
+            "category": "LOW_PEERS",
+            "message": "peers=6 (floor: 10)",
+            "severity": "WARNING",
+            "timestamp": "2026-03-19T05:02:01Z"
+        },
+        {
+            "category": "LOW_PEERS",
+            "message": "peers=9 (floor: 10)",
+            "severity": "WARNING",
+            "timestamp": "2026-03-19T05:12:01Z"
+        },
+        {
+            "category": "LOW_PEERS",
+            "message": "peers=6 (floor: 10)",
+            "severity": "WARNING",
+            "timestamp": "2026-03-19T05:13:01Z"
+        },
+        {
+            "category": "LOW_PEERS",
+            "message": "peers=9 (floor: 10)",
+            "severity": "WARNING",
+            "timestamp": "2026-03-19T05:14:01Z"
+        }
+    ],
+    "all_benchmarks_pass": false,
     "benchmarks": {
         "median_peers_gt_15": {
             "pass": true,
@@ -16,7 +137,7 @@
         "p5_peers_gt_10": {
             "pass": true,
             "rule": "5th percentile peers > 10",
-            "value": 21
+            "value": 20
         },
         "p95_lag_le_4": {
             "pass": true,
@@ -29,9 +150,9 @@
             "value": 0
         },
         "zero_full_exits": {
-            "pass": true,
+            "pass": false,
             "rule": "zero exits from server_state=full",
-            "value": 0
+            "value": 1
         },
         "zero_restarts": {
             "pass": true,
@@ -42,39 +163,83 @@
     "collection_gaps": [],
     "collection_rate_pct": 100,
     "disconnect_burst_events": [],
-    "expected_samples": 648,
-    "full_exits": 0,
-    "full_state_pct": 100,
-    "generated_at": "2026-03-12T11:05:01Z",
+    "expected_samples": 10074,
+    "full_exits": 1,
+    "full_state_pct": 99.5236,
+    "generated_at": "2026-03-21T09:05:01Z",
     "image_digest": "sha256:8ae343faf4859798a870c65e90e86b4f9f5414b442463b8a23d951c86de9dcb6",
     "image_pinned": true,
     "ledger_lag": {
-        "max": 4,
-        "p50": 1.5,
+        "max": 6,
+        "p50": 2,
         "p95": 3,
-        "p99": 3.5
+        "p99": 4
     },
-    "missed_validations_30d": 1780,
-    "non_full_samples": [],
+    "missed_validations_30d": 18,
+    "non_full_samples": [
+        {
+            "state": "disconnected",
+            "timestamp": "2026-03-18T22:02:01Z"
+        },
+        {
+            "state": "syncing",
+            "timestamp": "2026-03-18T22:03:01Z"
+        },
+        {
+            "state": "syncing",
+            "timestamp": "2026-03-18T22:04:01Z"
+        },
+        {
+            "state": "syncing",
+            "timestamp": "2026-03-18T22:05:01Z"
+        },
+        {
+            "state": "disconnected",
+            "timestamp": "2026-03-18T22:06:01Z"
+        },
+        {
+            "state": "connected",
+            "timestamp": "2026-03-18T22:07:01Z"
+        },
+        {
+            "state": "syncing",
+            "timestamp": "2026-03-18T22:08:01Z"
+        },
+        {
+            "state": "syncing",
+            "timestamp": "2026-03-18T22:09:01Z"
+        },
+        {
+            "state": "syncing",
+            "timestamp": "2026-03-18T22:10:01Z"
+        },
+        {
+            "state": "disconnected",
+            "timestamp": "2026-03-18T22:11:01Z"
+        }
+    ],
     "peers": {
         "max": 21,
         "median": 21,
-        "min": 21,
-        "p5": 21
+        "min": 0,
+        "p5": 20
     },
-    "period_end": "2026-03-12T11:04:01Z",
-    "period_hours": 10.8,
-    "period_start": "2026-03-12T00:17:17Z",
+    "period_end": "2026-03-21T09:04:01Z",
+    "period_hours": 167.9,
+    "period_start": "2026-03-14T09:06:01Z",
     "raw_csv_attestation": {
         "path": "/opt/postfiatd/metrics/validator_metrics.csv",
-        "sha256": "d4a8c3f37027c876ea60d1c2ae3206ad5cd05778f76ad5403486a21965ae1c87",
-        "size_bytes": 59828
+        "sha256": "6884dce21052d9fd593168f1d8fcb28897865411d4d33695751f4bdfd23c6b80",
+        "size_bytes": 1037041
     },
     "restart_count": 0,
-    "samples": 648,
+    "samples": 10076,
     "server_states": {
-        "full": 648
+        "connected": 5,
+        "disconnected": 11,
+        "full": 10028,
+        "syncing": 32
     },
-    "total_validations_30d": 761431,
+    "total_validations_30d": 703254,
     "version": "3.0.0"
 }
