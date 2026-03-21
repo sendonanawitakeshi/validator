@@ -67,9 +67,11 @@ function render(data) {
   el.version.textContent = data.server_version ? 'v' + data.server_version : '—';
   el.version.className = 'metric-value metric-value--sm metric-value--green';
 
-  var uptimeDays = Math.floor((Date.now() - NODE_CREATED.getTime()) / 86400000);
-  el.peers.textContent = uptimeDays + 'd';
-  el.peers.className = 'metric-value metric-value--sm' + (uptimeDays > 7 ? ' metric-value--green' : '');
+  // Peers filled from operator report in renderReport(); show placeholder until loaded
+  if (!el.peers._fromReport) {
+    el.peers.textContent = '—';
+    el.peers.className = 'metric-value metric-value--sm';
+  }
 
   el.uptime.textContent = fmtDuration(Date.now() - NODE_CREATED.getTime());
   el.uptime.className = 'metric-value metric-value--sm metric-value--green';
@@ -117,6 +119,14 @@ function renderReport(rpt) {
     }
   } else {
     if (notice) notice.style.display = 'none';
+  }
+
+  // Peers (from report, not VHS)
+  if (rpt.peers && rpt.peers.median != null) {
+    var median = rpt.peers.median;
+    el.peers.textContent = median;
+    el.peers.className = 'metric-value metric-value--sm' + (median > 15 ? ' metric-value--green' : median > 10 ? '' : ' metric-value--red');
+    el.peers._fromReport = true;
   }
 
   // Meta line
