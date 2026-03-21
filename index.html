@@ -4,7 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>sendoeth — Post Fiat Validator</title>
-  <meta name="description" content="Post Fiat testnet validator node operated by sendoeth. Live health metrics, signal intelligence SDK, and semi-crypto correlation engine." />
+  <meta name="description" content="Post Fiat testnet validator node operated by sendoeth. Live health metrics, 16-module analytical pipeline, and crypto signal intelligence infrastructure." />
+  <meta property="og:title" content="sendoeth — Post Fiat Validator" />
+  <meta property="og:description" content="Testnet validator with live health metrics, 16-module signal pipeline, 889 tests, and b1e55ed oracle integration. 99.99% agreement score." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sendoeth.github.io/validator/" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="sendoeth — Post Fiat Validator" />
+  <meta name="twitter:description" content="Testnet validator with live health metrics, 16-module signal pipeline, and b1e55ed oracle integration." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -25,6 +32,10 @@
         <a href="https://github.com/sendoeth" target="_blank" rel="noopener" class="nav-link">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
           GitHub
+        </a>
+        <a href="audit.html" class="nav-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+          Audit
         </a>
         <a href="https://explorer.testnet.postfiat.org/validators/nHBcLEB4S6moQGrhMjJo1jbp58WL5psHY9EMDWNAtdqykUYiA1rF" target="_blank" rel="noopener" class="nav-link">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
@@ -109,7 +120,7 @@
           </div>
           <div class="metric-card">
             <span class="metric-value metric-value--sm" id="statLedgerAge">—</span>
-            <span class="metric-label">Ledger Age</span>
+            <span class="metric-label">Ledger Hash</span>
           </div>
           <div class="metric-card">
             <span class="metric-value metric-value--sm" id="statNetwork">—</span>
@@ -186,11 +197,12 @@
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="signal-icon"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
               <h3 class="signal-card-title">Post Fiat Signals SDK</h3>
             </div>
-            <p class="signal-card-desc">Python SDK for consuming regime detection signals, filtered trade recommendations, and model health data from the semi-crypto correlation engine. Zero dependencies, retry logic built in, circuit breaker watchdog included.</p>
+            <p class="signal-card-desc">Python SDK and JSON API for consuming regime detection signals, crypto calibration data, and model health metrics from a 16-module analytical pipeline. 9 endpoints, 889 tests across 18 suites. Live integration with b1e55ed oracle network.</p>
             <div class="signal-card-stats">
               <span class="signal-stat">Python 3.10+</span>
-              <span class="signal-stat">Zero Deps</span>
-              <span class="signal-stat">v0.3.0</span>
+              <span class="signal-stat">16 Modules</span>
+              <span class="signal-stat">9 Endpoints</span>
+              <span class="signal-stat">889 Tests</span>
             </div>
             <a href="https://github.com/sendoeth/post-fiat-signals" target="_blank" rel="noopener" class="cta-btn cta-btn--blue">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
@@ -205,10 +217,11 @@
               <h3 class="signal-card-title">Pipeline Capabilities</h3>
             </div>
             <ul class="signal-list">
-              <li><strong>Regime Detection</strong> — 60-day rolling window, 3 states (NEUTRAL / CRYPTO_LEADS / SYSTEMIC), 60% accuracy with 27-day lead time</li>
-              <li><strong>Filtered Signals</strong> — Regime-gated trade recommendations. NEUTRAL/CRYPTO_LEADS combo: 82% hit rate, +8.24% avg return</li>
-              <li><strong>Granger Causality</strong> — Hourly semi-to-crypto lead-lag monitor across 9 pairs. NVDA-to-RNDR strongest signal (Bonferroni significant)</li>
-              <li><strong>Model Drift Watchdog</strong> — Hourly F-stat monitoring with 3 detectors, circuit breaker (VALID / DEGRADED / STOP)</li>
+              <li><strong>Regime Detection</strong> — 60-day rolling window, 4 states (NEUTRAL / CRYPTO_LEADS / SEMI_LEADS / SYSTEMIC). Bottleneck-weighted proximity scoring with velocity adjustment</li>
+              <li><strong>Crypto Calibration</strong> — Conditional return distributions P(R|regime,symbol) for BTC/ETH/SOL/LINK. Data-driven confidence, direction optimization, Kelly fractions, cross-symbol correlation matrices</li>
+              <li><strong>Model Tournament</strong> — Leave-one-transition-out cross-validation of 5 models (Weibull, Markov, Semi-Markov, Sequential, Naive). Brier decomposition, stacking weights, disagreement index</li>
+              <li><strong>Ensemble Pipeline</strong> — Regime change alerts (NONE through CONFIRMED), Bayesian Markov transitions, Weibull survival analysis, sequential evidence accumulation (SPRT+CUSUM+Bayesian CPD), prediction calibration scoring</li>
+              <li><strong>b1e55ed Integration</strong> — Active oracle producer pushing calibrated crypto signals every 15 min. 26 resolved signals, karma 0.787</li>
             </ul>
           </div>
         </div>
@@ -235,23 +248,23 @@
               <p class="operator-role">Post Fiat Network Contributor</p>
             </div>
           </div>
-          <p class="operator-desc">Anonymous contributor focused on signal intelligence infrastructure for the Post Fiat network. Built and maintains a semi-crypto correlation engine that detects regime shifts between semiconductor equities and crypto assets, providing filtered trade signals to other network participants via a public Python SDK and JSON API.</p>
+          <p class="operator-desc">Anonymous contributor focused on signal intelligence infrastructure for the Post Fiat network. Built and maintains a 16-module analytical pipeline that detects regime shifts between semiconductor equities and crypto assets, producing calibrated crypto signals consumed by external oracle networks. 78+ tasks completed, 889 tests, active b1e55ed integration with 0.787 karma.</p>
           <div class="operator-contributions">
             <div class="contribution">
-              <span class="contribution-num">37+</span>
+              <span class="contribution-num">78+</span>
               <span class="contribution-label">Tasks Completed</span>
             </div>
             <div class="contribution">
-              <span class="contribution-num">6</span>
+              <span class="contribution-num">9</span>
               <span class="contribution-label">API Endpoints</span>
             </div>
             <div class="contribution">
-              <span class="contribution-num">36</span>
-              <span class="contribution-label">Integration Tests</span>
+              <span class="contribution-num">889</span>
+              <span class="contribution-label">Tests</span>
             </div>
             <div class="contribution">
               <span class="contribution-num">18</span>
-              <span class="contribution-label">Stress Tests</span>
+              <span class="contribution-label">Test Suites</span>
             </div>
           </div>
           <div class="operator-links">
