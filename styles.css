@@ -568,6 +568,12 @@ header {
 
 /* ── Signal Section ───────────────────────── */
 
+.signal-intro {
+  font-size: 0.92rem; color: var(--text-secondary);
+  line-height: 1.75; margin-bottom: 1.25rem;
+  padding: 0 0.25rem;
+}
+
 .signal-grid {
   display: grid; gap: 1rem;
   grid-template-columns: 1fr;
